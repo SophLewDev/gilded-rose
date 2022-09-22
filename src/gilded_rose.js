@@ -1,4 +1,5 @@
 class Item {
+  // do not alter any of these
   constructor(name, sellIn, quality){
     this.name = name;
     this.sellIn = sellIn;
