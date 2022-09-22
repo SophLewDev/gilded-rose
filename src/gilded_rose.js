@@ -14,21 +14,19 @@ class Shop {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       if (this.isItemOther(this.items[i])) {
-        console.log("I am here!")
             this.items[i].quality = this.items[i].quality - 1;
       } else {
         if (this.items[i].quality < 50) {
-          console.log("no I am here")
-          this.items[i].quality = this.items[i].quality + 1;
+          this.incrementQualityByOne(this.items[i]);
           if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
             if (this.items[i].sellIn < 11) {
               if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
+                this.incrementQualityByOne(this.items[i]);
               }
             }
             if (this.items[i].sellIn < 6) {
               if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
+                this.incrementQualityByOne(this.items[i]);
               }
             }
           }
@@ -50,13 +48,17 @@ class Shop {
           }
         } else {
           if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
+            this.incrementQualityByOne(this.items[i]);;
           }
         }
       }
     }
 
     return this.items;
+  }
+
+  incrementQualityByOne(item) {
+    item.quality += 1
   }
 
   isItemOther(item) {
