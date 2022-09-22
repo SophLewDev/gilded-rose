@@ -20,3 +20,20 @@ All items have a SellIn value which denotes the number of days we have to sell t
 ## Brief
 
 The aim is to practice good design in the language of your choice. Refactor the code in such a way that adding the new "conjured" functionality is easy.
+
+## Example of Integration tests
+
+#### returning name, sellIn and quality value of items
+
+const gildedRose = new Shop([new Item("foo", 0, 0)]);
+const items = gildedRose.items
+items[0].name # => "foo"
+items[0].sellIn # => 0
+items[0].quality # => 0
+
+#### decreases the quality of 'other' item by 1 when one day has passed
+
+const gildedRose = new Shop([new Item("foo", 2, 2)]);
+const items = gildedrose.items
+item[0].updateQuality()
+item[0].quality # => 1
