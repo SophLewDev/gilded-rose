@@ -32,4 +32,18 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(3)
     expect(items[1].quality).toEqual(3)
   })
+  it("does not modify sulfuras' quality value and its sellIn value is 0", () => {
+    const item = new Item("Sulfuras, Hand of Ragnaros",0,10)
+    const gildedRose = new Shop([item])
+    const items = gildedRose.items
+    gildedRose.updateQuality()
+    expect(items[0].quality).toEqual(10)
+  })
+  it("keeps Sulfuras' sellIn value as 0 as it never has to be sold", () => {
+    const item = new Item("Sulfuras, Hand of Ragnaros",0,10)
+    const gildedRose = new Shop([item])
+    const items = gildedRose.items
+    gildedRose.updateQuality()
+    expect(items[0].sellIn).toEqual(0)
+  })
 });
