@@ -32,7 +32,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(3)
     expect(items[1].quality).toEqual(3)
   })
-  it("does not modify sulfuras' quality value and its sellIn value is 0", () => {
+  it("does not modify sulfuras' quality value", () => {
     const item = new Item("Sulfuras, Hand of Ragnaros",0,10)
     const gildedRose = new Shop([item])
     const items = gildedRose.items
