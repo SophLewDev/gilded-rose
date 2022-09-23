@@ -15,6 +15,7 @@ class Shop {
     for (let i = 0; i < this.items.length; i++) {
       if (this.isItemOther(this.items[i])) {
         console.log("1")
+        this.items[i].sellIn -= 1
         this.decrementQualityByOne(this.items[i]);
       }
       else if (this.isItemSulfuras(this.items[i])) {
