@@ -52,4 +52,13 @@ describe("Gilded Rose", function() {
     gildedRose.updateQuality()
     expect(items[0].sellIn).toEqual(1)
   })
+  it("decreases the sellIn value by one for Aged Brie and Backstage passes item", () => {
+    const item1 = new Item("Aged Brie", 2, 2)
+    const item2 = new Item("Backstage passes to a TAFKAL80ETC concert", 15,2)
+    const gildedRose = new Shop([item1, item2])
+    const items = gildedRose.items
+    gildedRose.updateQuality()
+    expect(items[0].sellIn).toEqual(1)
+    expect(items[1].sellIn).toEqual(14)
+  })
 });

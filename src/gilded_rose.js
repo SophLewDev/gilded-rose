@@ -23,6 +23,7 @@ class Shop {
         this.items[i].quality = this.items[i].quality
       } else {
         console.log("3")
+        this.items[i].sellIn -= 1
         this.incrementQualityByOne(this.items[i]);
       }
 
