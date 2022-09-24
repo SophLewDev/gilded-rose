@@ -112,4 +112,11 @@ describe("Gilded Rose", function() {
     gildedRose.updateQuality()
     expect(items[0].quality).toEqual(8)
   })
+  it("degrades conjured items twice as fast after Sellin date passes", () => {
+    const item = new Item("Conjured",0,10)
+    const gildedRose = new Shop([item])
+    const items = gildedRose.items
+    gildedRose.updateQuality()
+    expect(items[0].quality).toEqual(6)
+  })
 });

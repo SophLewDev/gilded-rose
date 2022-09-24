@@ -15,8 +15,8 @@ class Shop {
     for (let i = 0; i < this.items.length; i++) {
       if (this.isItemOther(this.items[i])) {
         if (this.items[i].sellIn > 0 && this.items[i].quality > 0) {
-          this.decrementQualityByOne(this.items[i]);
           this.items[i].sellIn -= 1
+          this.decrementQualityByOne(this.items[i]);
         } else if (this.items[i].sellIn < 1 && this.items[i].quality > 2) {
           this.items[i].sellIn -= 1
           this.items[i].quality -= 2
@@ -27,8 +27,16 @@ class Shop {
       } else if (this.isItemSulfuras(this.items[i])) {
           this.items[i].quality = this.items[i].quality
       } else if (this.items[i].name === "Conjured") {
+        if (this.items[i].sellIn > 0 && this.items[i].quality > 0) {
           this.items[i].sellIn -= 1
           this.items[i].quality -= 2
+        } else if (this.items[i].sellIn < 1 && this.items[i].quality > 4) {
+          this.items[i].sellIn -= 1
+          this.items[i].quality -= 4
+        } else {
+          this.items[i].sellIn -= 1
+          this.items[i].quality = 0
+        }
       }else if (this.items[i].name === "Aged Brie") {
         this.items[i].sellIn -= 1
         if (this.items[i].quality < 50) {
