@@ -16,7 +16,7 @@ class Shop {
       if (this.isItemOther(this.items[i])) {
         if (this.items[i].sellIn > 0 && this.items[i].quality > 0) {
           this.decrementQualityByOne(this.items[i]);
-        this.items[i].sellIn -= 1
+          this.items[i].sellIn -= 1
         } else if (this.items[i].sellIn < 1 && this.items[i].quality > 2) {
           this.items[i].sellIn -= 1
           this.items[i].quality -= 2
@@ -25,14 +25,17 @@ class Shop {
           this.items[i].quality = 0
         }
       } else if (this.isItemSulfuras(this.items[i])) {
-        this.items[i].quality = this.items[i].quality
-      } else if (this.items[i].name === "Aged Brie") {
+          this.items[i].quality = this.items[i].quality
+      } else if (this.items[i].name === "Conjured") {
+          this.items[i].sellIn -= 1
+          this.items[i].quality -= 2
+      }else if (this.items[i].name === "Aged Brie") {
         this.items[i].sellIn -= 1
-          if (this.items[i].quality < 50) {
+        if (this.items[i].quality < 50) {
           this.incrementQualityByOne(this.items[i]);
-          } else {
-            this.items[i].quality = 50
-          }
+        } else {
+          this.items[i].quality = 50
+        }
       } else {
         if (this.items[i].sellIn > 10 && this.items[i].quality < 50) {
           this.items[i].sellIn -= 1
@@ -52,13 +55,7 @@ class Shop {
         }
       }
     }
-
-    // return this.items;
   }
-
-  // checkQualityIsPositive(item) {
-  //   item.quality - 
-  // }
   
   incrementQualityByOne(item) {
     item.quality += 1
@@ -72,7 +69,10 @@ class Shop {
   }
 
   isItemOther(item) {
-    return item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert' && item.name != 'Sulfuras, Hand of Ragnaros'
+    return item.name != 'Aged Brie' 
+    && item.name != 'Backstage passes to a TAFKAL80ETC concert' 
+    && item.name != 'Sulfuras, Hand of Ragnaros' 
+    && item.name != "Conjured"
   }
 }
 
