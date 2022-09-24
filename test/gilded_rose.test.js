@@ -105,7 +105,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(50)
     expect(items[1].quality).toEqual(50)
   })
-  it("degrades conjured items twice as fast", () => {
+  it("degrades conjured items twice as fast before sellIn date passes", () => {
     const item = new Item("Conjured",5,10)
     const gildedRose = new Shop([item])
     const items = gildedRose.items
