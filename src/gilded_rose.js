@@ -26,9 +26,12 @@ class Shop {
         if (this.items[i].sellIn > 10) {
           this.items[i].sellIn -= 1
           this.items[i].quality += 1
-        } else  {
+        } else if (this.items[i].sellIn < 11 && this.items[i].sellIn > 5) {
           this.items[i].sellIn -= 1
           this.items[i].quality += 2
+        } else {
+          this.items[i].sellIn -= 1
+          this.items[i].quality += 3
         }
       }
 
