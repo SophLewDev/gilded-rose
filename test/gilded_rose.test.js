@@ -54,7 +54,7 @@ describe("Gilded Rose", function() {
   })
   it("decreases the sellIn value by one for Aged Brie and Backstage passes item", () => {
     const item1 = new Item("Aged Brie", 2, 2)
-    const item2 = new Item("Backstage passes to a TAFKAL80ETC concert", 15,2)
+    const item2 = new Item("Backstage passes to a TAFKAL80ETC concert",15,2)
     const gildedRose = new Shop([item1, item2])
     const items = gildedRose.items
     gildedRose.updateQuality()
@@ -62,24 +62,31 @@ describe("Gilded Rose", function() {
     expect(items[1].sellIn).toEqual(14)
   })
   it("increases the quality of backstage passes by 2 when sellIn is between 6 and 10", () => {
-    const item = new Item("Backstage passes to a TAFKAL80ETC concert", 10,5)
+    const item = new Item("Backstage passes to a TAFKAL80ETC concert",10,5)
     const gildedRose = new Shop([item])
     const items = gildedRose.items
     gildedRose.updateQuality()
     expect(items[0].quality).toEqual(7)
   })
   it("increases the quality of backstage passes by 2 when sellIn is between 0 and 5", () => {
-    const item = new Item("Backstage passes to a TAFKAL80ETC concert", 5,5)
+    const item = new Item("Backstage passes to a TAFKAL80ETC concert",5,5)
     const gildedRose = new Shop([item])
     const items = gildedRose.items
     gildedRose.updateQuality()
     expect(items[0].quality).toEqual(8)
   })
   it("returns the quality value of backstage passes as 0 when the concert has been", () => {
-    const item = new Item("Backstage passes to a TAFKAL80ETC concert", 0,5)
+    const item = new Item("Backstage passes to a TAFKAL80ETC concert",0,5)
     const gildedRose = new Shop([item])
     const items = gildedRose.items
     gildedRose.updateQuality()
     expect(items[0].quality).toEqual(0)
+  })
+  it("degrades quality of 'other' items twice as fast after SellIn date is negative", () => {
+    const item = new Item("cheese",0,5)
+    const gildedRose = new Shop([item])
+    const items = gildedRose.items
+    gildedRose.updateQuality()
+    expect(items[0].quality).toEqual(3)
   })
 });
