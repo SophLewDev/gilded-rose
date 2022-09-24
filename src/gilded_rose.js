@@ -28,17 +28,24 @@ class Shop {
         this.items[i].quality = this.items[i].quality
       } else if (this.items[i].name === "Aged Brie") {
         this.items[i].sellIn -= 1
-        this.incrementQualityByOne(this.items[i]);
+          if (this.items[i].quality < 50) {
+          this.incrementQualityByOne(this.items[i]);
+          } else {
+            this.items[i].quality = 50
+          }
       } else {
-        if (this.items[i].sellIn > 10) {
+        if (this.items[i].sellIn > 10 && this.items[i].quality < 50) {
           this.items[i].sellIn -= 1
           this.items[i].quality += 1
-        } else if (this.items[i].sellIn < 11 && this.items[i].sellIn > 5) {
+        } else if (this.items[i].sellIn < 11 && this.items[i].sellIn > 5 && this.items[i].quality < 49) {
           this.items[i].sellIn -= 1
           this.items[i].quality += 2
-        } else if (this.items[i].sellIn < 6 && this.items[i].sellIn > 0) {
+        } else if (this.items[i].sellIn < 6 && this.items[i].sellIn > 0 && this.items[i].quality < 48) {
           this.items[i].sellIn -= 1
           this.items[i].quality += 3
+        } else if (this.items[i].quality >= 50) {
+          this.items[i].sellIn -= 1
+          this.items[i].quality = 50
         } else {
           this.items[i].sellIn -= 1
           this.items[i].quality = 0

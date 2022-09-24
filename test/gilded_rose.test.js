@@ -89,11 +89,20 @@ describe("Gilded Rose", function() {
     gildedRose.updateQuality()
     expect(items[0].quality).toEqual(3)
   })
-  it("ensures quality cannot be negative", () => {
+  it("ensures quality cannot go under 0", () => {
     const item = new Item("cheese",5,0)
     const gildedRose = new Shop([item])
     const items = gildedRose.items
     gildedRose.updateQuality()
     expect(items[0].quality).toEqual(0)
+  })
+  it("enusures quality cannot go over 50", () => {
+    const item1 = new Item("Aged Brie",2,50)
+    const item2 = new Item("Backstage passes to a TAFKAL80ETC concert",5,50)
+    const gildedRose = new Shop([item1,item2])
+    const items = gildedRose.items
+    gildedRose.updateQuality()
+    expect(items[0].quality).toEqual(50)
+    expect(items[1].quality).toEqual(50)
   })
 });
