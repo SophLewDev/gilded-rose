@@ -89,4 +89,11 @@ describe("Gilded Rose", function() {
     gildedRose.updateQuality()
     expect(items[0].quality).toEqual(3)
   })
+  it("ensures quality cannot be negative", () => {
+    const item = new Item("cheese",5,0)
+    const gildedRose = new Shop([item])
+    const items = gildedRose.items
+    gildedRose.updateQuality()
+    expect(items[0].quality).toEqual(0)
+  })
 });

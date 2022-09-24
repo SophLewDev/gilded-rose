@@ -14,14 +14,15 @@ class Shop {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       if (this.isItemOther(this.items[i])) {
-        if (this.items[i].sellIn > 0) {
-          console.log("here 1")
+        if (this.items[i].sellIn > 0 && this.items[i].quality > 0) {
           this.decrementQualityByOne(this.items[i]);
         this.items[i].sellIn -= 1
-        } else {
-          console.log("here 2")
+        } else if (this.items[i].sellIn < 1 && this.items[i].quality > 2) {
           this.items[i].sellIn -= 1
           this.items[i].quality -= 2
+        } else {
+          this.items[i].sellIn -= 1
+          this.items[i].quality = 0
         }
       } else if (this.isItemSulfuras(this.items[i])) {
         this.items[i].quality = this.items[i].quality
@@ -29,7 +30,6 @@ class Shop {
         this.items[i].sellIn -= 1
         this.incrementQualityByOne(this.items[i]);
       } else {
-        console.log("4")
         if (this.items[i].sellIn > 10) {
           this.items[i].sellIn -= 1
           this.items[i].quality += 1
@@ -49,6 +49,9 @@ class Shop {
     // return this.items;
   }
 
+  // checkQualityIsPositive(item) {
+  //   item.quality - 
+  // }
   
   incrementQualityByOne(item) {
     item.quality += 1
